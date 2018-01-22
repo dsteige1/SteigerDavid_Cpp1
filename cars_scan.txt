@@ -1,0 +1,5 @@
+12;Aschaffenburg;12021
+213;Speyer;143490
+31;Hamburg-Harburg;32203
+242;Freiburg;329331
+423;Wolfsburg;439570
