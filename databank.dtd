@@ -1,11 +1,2 @@
-<!ELEMENT cars (item)>
-<!ELEMENT item (brand, model, price, info)>
-<!ELEMENT brand (#PCDATA)>
-<!ELEMENT model (#PCDATA)>
-<!ELEMENT price (#PCDATA)>
-<!ELEMENT info (#PCDATA)>
-
-
-<!ATTLIST item xml:id ID>
-<!ATTLIST model type CDATA>
-<!ATTLIST model date CDATA>
+<!ELEMENT cars item>
+<!ELEMENT item brand model price info>
