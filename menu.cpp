@@ -6,8 +6,7 @@ using namespace std;
 int menu(){
     char action;
 
-    cout << endl << "**** Hello! ****" << endl << endl;
-    cout << "Please choose on of the following options" << endl;
+    cout << "Please choose one of the following options" << endl;
     cout << "1.     [p]rint the xml" << endl;
     cout << "2.     p[r]int the txt" << endl;
     cout << "3.     [c]onvert the the data sets into new file" << endl;
@@ -23,9 +22,18 @@ int menu(){
         printTXT();
         break;
     case 'c':
+        convert();
         break;
     case 'h':
         help();
+        break;
+    default:
+        cout << endl << "###########################################" << endl;
+        cout <<         "This is not an option. Try 'h' to get help." << endl;
+        cout <<         "###########################################" << endl << endl;
+
+        menu();
+
         break;
     }
     return 0;
