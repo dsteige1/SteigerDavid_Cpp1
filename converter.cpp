@@ -1,11 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
-//#include "token.h"
 #include "scan.h"
 #include "convert.h"
 
 using namespace std;
+
 
 /*void ClToken::convertData(int ebene){
     ifstream eingabeTXT;
@@ -59,7 +59,7 @@ void ClToken::druckeXMLEbene(int ebene){
     }
 }*/
 
-void ClToken::convertData(int ebene){
+void ClToken::convertData(int ebene, char ausgabe[30]){
     ifstream eingabeTXT;
     ofstream output;
 
@@ -72,9 +72,9 @@ void ClToken::convertData(int ebene){
 
     eingabeTXT.close();
 
-    druckeXMLEbene(ebene);
+    druckeXMLEbene(ebene, ausgabe);
 
-    output.open("export.xml", ios::app);
+    output.open(ausgabe, ios::app);
 
     //ios::app puts me into 'append-mode'.
     //Otherwhise the file would be overwritten every turn of the recursion.
@@ -103,38 +103,38 @@ void ClToken::convertData(int ebene){
 
     if(tokenChild != NULL){
 
-        output.open("export.xml", ios::app);
+        output.open(ausgabe, ios::app);
 
         output << ">" << endl;
 
         output.close();
 
-        tokenChild->convertData(ebene+1);
-        druckeXMLEbene(ebene);
+        tokenChild->convertData(ebene+1, ausgabe);
+        druckeXMLEbene(ebene, ausgabe);
 
-        output.open("export.xml", ios::app);
+        output.open(ausgabe, ios::app);
 
         output << "</" << name() << ">" << endl;
 
         output.close();
     }
     else{
-        output.open("export.xml", ios::app);
+        output.open(ausgabe, ios::app);
 
         output << ">" << inhalt() << "</" << name() << ">" << endl;
 
         output.close();
     }
 
-    if(tokenSibling != NULL) tokenSibling->convertData(ebene);
+    if(tokenSibling != NULL) tokenSibling->convertData(ebene, ausgabe);
 
 }
 
-void ClToken::druckeXMLEbene(int ebene){
+void ClToken::druckeXMLEbene(int ebene, char ausgabe[30]){
     while (ebene > 0){
         ofstream output;
 
-        output.open("export.xml", ios::app);
+        output.open(ausgabe, ios::app);
 
         output << "   ";
         ebene = ebene - 1;
@@ -146,12 +146,17 @@ void ClToken::druckeXMLEbene(int ebene){
 int convert(){
     ifstream eingabeXML;
     ClToken *token;
+    char outputName[20];
+
+    cout << "Please type the name of the output-file (including suffix '.xml')." << endl;
+    cout << "Name: ";
+    cin >> outputName;
 
     eingabeXML.open("databank_cars.xml");
 
     token=new ClToken();
     if (token->getToken(eingabeXML) != 0){
-        token->convertData(0);
+        token->convertData(0, outputName);
     }
 
     eingabeXML.close();
