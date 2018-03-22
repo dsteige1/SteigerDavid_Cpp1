@@ -18,7 +18,7 @@ class ClattToken {
 
 class ClToken {
     private:
-        void druckeXMLEbene(int ebene);
+        void druckeXMLEbene(int ebene, char ausgabe[30]);
         char tokenName[64];
         ClToken *tokenChild;
         ClToken *tokenSibling;
@@ -29,7 +29,7 @@ class ClToken {
         ClToken *child() { return tokenChild; }
         char *inhalt() { return tokenInhalt; }
         //void druckeToken(int ebene);
-        void convertData(int ebene);
+        void convertData(int ebene, char ausgabe[30]);
         int getToken(ifstream &datei);
         ClattToken att;
 };
