@@ -1,29 +1,29 @@
 <cars>
-	<item xml:id="12">
+	<item xml:id="A12">
 		<brand>Volvo</brand>
 		<model type="small car" date="08-2016">V40</model>
 		<price>100.00</price>
 		<info>Damage: Scratch on the left wing.</info>
 	</item>
-	<item xml:id="213">
+	<item xml:id="F213">
 		<brand>Mercedes</brand>
 		<model type="Limousine" date="07-2015">Cl200</model>
 		<price>150.00</price>
 		<info>/</info>
 	</item>
-	<item xml:id="31">
+	<item xml:id="S31">
 		<brand>Mercedes</brand>
 		<model type="SUV" date="01-2018">GLK400</model>
 		<price>219.00</price>
 		<info>AMG-model</info>
 	</item>
-	<item xml:id="242">
+	<item xml:id="I242">
 		<brand>Toyota</brand>
 		<model type="Combi" date="07-2016">Auris</model>
 		<price>180.00</price>
 		<info>Damage: Scratches on dashboard on driver's side</info>
 	</item>
-	<item xml:id="423">
+	<item xml:id="C423">
 		<brand>VW</brand>
 		<model type="Combi" date="04-2017">Passat</model>
 		<price>200.00</price>
