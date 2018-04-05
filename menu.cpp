@@ -7,12 +7,14 @@ int menu(){
     char action;
 
     cout << "Please choose one of the following options" << endl;
-    cout << "1.     [p]rint the xml" << endl;
-    cout << "2.     p[r]int the txt" << endl;
-    cout << "3.     [c]onvert the the data sets into new file" << endl;
-    cout << "4.     [h]elp me!" << endl << endl;
+    cout << "1.     [p]rint the xml." << endl;
+    cout << "2.     p[r]int the txt." << endl;
+    cout << "3.     [c]onvert the the data sets into new file." << endl;
+    cout << "4.     [h]elp me!" << endl;
+    cout << "5.     [e]xit programm." << endl << endl;
     cout << "Your choice: ";
     cin >> action;
+    cout << endl;
 
     switch(action){
     case 'p':
@@ -26,6 +28,9 @@ int menu(){
         break;
     case 'h':
         help();
+        break;
+    case 'e':
+        exit();
         break;
     default:
         cout << endl << "###########################################" << endl;
