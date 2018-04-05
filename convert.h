@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <string.h>
 
 using namespace std;
 
@@ -28,7 +27,6 @@ class ClToken {
         char *name() { return tokenName; }
         ClToken *child() { return tokenChild; }
         char *inhalt() { return tokenInhalt; }
-        //void druckeToken(int ebene);
         void convertData(int ebene, char ausgabe[30]);
         int getToken(ifstream &datei);
         ClattToken att;
@@ -42,13 +40,5 @@ enum zustand {istStartTag,
               erwarteAttributNamen,
               verarbeiteAttributWert
              };
-
-/*ClToken::ClToken() {
-    *tokenName='\0';
-    tokenChild=NULL;
-    tokenSibling=NULL;
-    tokenInhalt=new char[1];
-    *tokenInhalt='\0';
-}*/
 
 int menu();
