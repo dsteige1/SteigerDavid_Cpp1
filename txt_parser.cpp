@@ -13,14 +13,18 @@ int printTXT(){
     eingabeTXT.open("cars_scan.txt");
 
     scan = new ClscanData();
-    scan->verarbeiteTXT(eingabeTXT);
+    scan->ladeTXT(eingabeTXT);
     scan->druckeData();
 
     eingabeTXT.close();
+
+    cout << endl << "__________________________________________" <<endl;
+    menu();
+
     return 0;
 }
 
-void ClscanData::verarbeiteTXT(ifstream& scan){
+void ClscanData::ladeTXT(ifstream& scan){
     char zeichen;
     char puffer[100];
     int zaehler=0;
@@ -59,7 +63,6 @@ void ClscanData::verarbeiteTXT(ifstream& scan){
             break;
         }
     }
-    druckeData();
 }
 
 void ClscanData::druckeData(){
@@ -67,6 +70,6 @@ void ClscanData::druckeData(){
         cout << "Neuer Scan: " << endl;
         cout << "  ID: " << zeigeID(i) << endl;
         cout << "  Ort: " << zeigeOrt(i) << endl;
-        cout << "  km; " << zeigeKM(i) << endl;
+        cout << "  km: " << zeigeKM(i) << endl;
     }
 }
