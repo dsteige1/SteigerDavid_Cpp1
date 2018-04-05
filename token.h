@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <string.h>
 
 using namespace std;
 
@@ -29,11 +28,19 @@ class ClToken {
         ClToken *child() { return tokenChild; }
         char *inhalt() { return tokenInhalt; }
         void druckeToken(int ebene);
+        void convertData(int ebene);
         int getToken(ifstream &datei);
         ClattToken att;
 };
 
-enum zustand {istStartTag, istEndTag, zwischenTags, inNamen, erwarteAttributWert, erwarteAttributNamen, verarbeiteAttributWert};
+enum zustand {istStartTag,
+              istEndTag,
+              zwischenTags,
+              inNamen,
+              erwarteAttributWert,
+              erwarteAttributNamen,
+              verarbeiteAttributWert
+             };
 
 ClToken::ClToken() {
     *tokenName='\0';
@@ -42,3 +49,5 @@ ClToken::ClToken() {
     tokenInhalt=new char[1];
     *tokenInhalt='\0';
 }
+
+int menu();
