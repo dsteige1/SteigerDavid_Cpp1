@@ -6,59 +6,6 @@
 
 using namespace std;
 
-
-/*void ClToken::convertData(int ebene){
-    ifstream eingabeTXT;
-
-    ClscanData *scan;
-
-    eingabeTXT.open("cars_scan.txt");
-
-    scan = new ClscanData();
-    scan->verarbeiteTXT(eingabeTXT);
-
-    eingabeTXT.close();
-
-    druckeXMLEbene(ebene);
-    cout << "<" << name();
-
-    if (att.zahlAtt() > 0){
-        for (int i = 0; i < att.zahlAtt(); i++){
-
-            cout << " "<< att.zeigeAttName(i) << "=" << '"' <<  att.zeigeAttWert(i) << '"' << " ";
-
-            for (int j=0; j<scan->anzahlScans; j++){
-                if (!strcmp(scan->zeigeID(j), att.zeigeAttWert(i))){
-
-                    cout << "location=" << '"' << scan->zeigeOrt(j) << '"' << " ";
-
-                    cout << "km=" << '"' << scan->zeigeKM(j) << '"' ;
-                }
-            }
-        }
-    }
-
-    if(tokenChild != NULL){
-        cout << ">" << endl;
-        tokenChild->convertData(ebene+1);
-        druckeXMLEbene(ebene);
-        cout << "</" << name() << ">" << endl;
-    }
-    else{
-        cout << ">" << inhalt() << "</" << name() << ">" << endl;
-    }
-
-    if(tokenSibling != NULL) tokenSibling->convertData(ebene);
-
-}
-
-void ClToken::druckeXMLEbene(int ebene){
-    while (ebene > 0){
-        cout << "   ";
-        ebene = ebene - 1;
-    }
-}*/
-
 void ClToken::convertData(int ebene, char ausgabe[30]){
     ifstream eingabeTXT;
     ofstream output;
@@ -68,7 +15,7 @@ void ClToken::convertData(int ebene, char ausgabe[30]){
     eingabeTXT.open("cars_scan.txt");
 
     scan = new ClscanData();
-    scan->verarbeiteTXT(eingabeTXT);
+    scan->ladeTXT(eingabeTXT);
 
     eingabeTXT.close();
 
@@ -76,10 +23,12 @@ void ClToken::convertData(int ebene, char ausgabe[30]){
 
     output.open(ausgabe, ios::app);
 
-    //ios::app puts me into 'append-mode'.
-    //Otherwhise the file would be overwritten every turn of the recursion.
-    //I found that handy method here:
-    //https://www.go4expert.com/articles/understanding-read-write-append-file-t29965/#append-files
+    /*
+    ios::app puts me into 'append-mode'.
+    Otherwhise the file would be overwritten every turn of the recursion.
+    I found that handy method here:
+    https://www.go4expert.com/articles/understanding-read-write-append-file-t29965/#append-files
+    */
 
     output << "<" << name();
 
@@ -89,6 +38,9 @@ void ClToken::convertData(int ebene, char ausgabe[30]){
             output << " "<< att.zeigeAttName(i) << "=" << '"' <<  att.zeigeAttWert(i) << '"' << " ";
 
             for (int j=0; j<scan->anzahlScans; j++){
+
+                // Check if Scan contains matching ID, then print.
+
                 if (!strcmp(scan->zeigeID(j), att.zeigeAttWert(i))){
 
                     output << "location=" << '"' << scan->zeigeOrt(j) << '"' << " ";
@@ -149,7 +101,7 @@ int convert(){
     char outputName[20];
 
     cout << "Please type the name of the output-file (including suffix '.xml')." << endl;
-    cout << "Name: ";
+    cout << "File-Name: ";
     cin >> outputName;
 
     eingabeXML.open("databank_cars.xml");
@@ -161,7 +113,8 @@ int convert(){
 
     eingabeXML.close();
 
-    cout << "__________________________________________" <<endl;
+    cout << endl << "Your file has been saved under the name " << '"' << outputName << '"' << "." << endl;
+    cout << endl << "__________________________________________" <<endl;
     menu();
 
     return 0;
